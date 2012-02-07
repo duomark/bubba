@@ -13,6 +13,6 @@ This project is built with dependencies on other open source software projects.
 
 The following software is included in the deployed application bundle:
 
-  * dk_yaws
+  * dk_yaws (0.1.1)
   * d3.js
 

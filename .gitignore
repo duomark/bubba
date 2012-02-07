@@ -1,0 +1,9 @@
+*~
+*/*~
+*/*/*~
+deps/
+ebin/
+rel/bubba
+erl_crash.dump
+*/erl_crash.dump
+.eunit/

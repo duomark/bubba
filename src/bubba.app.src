@@ -1,0 +1,15 @@
+{application, bubba,
+ [
+  {id,  "BUBBA"},
+  {vsn, "0.0.1"},
+  {description, "Benchmarking Using Browser-Based Animation"},
+  {modules, []},
+  {registered, [bubba_app, bubba_sup, bubba_server]},
+  {applications,
+   [
+    kernel, stdlib, sasl, gs, appmon
+   ]},
+  {included_applications, [dk_yaws]},
+  {mod, {bubba_app, []}},
+  {env, []}
+]}.
