@@ -38,6 +38,6 @@ start_link() ->
 
 init({}) ->
     YawsSup = ?SUPER(dk_yaws_sup, []),
-    BenchServer = ?CHILD(dk_bench_server, []),
-    {ok, { {one_for_one, 5, 10}, [YawsSup, BenchServer]} }.
+    BubbaServer = ?CHILD(bubba_server, []),
+    {ok, { {one_for_one, 5, 10}, [YawsSup, BubbaServer]} }.
 
