@@ -1,5 +1,6 @@
 -type valid_func_types() ::
-        function_call | mfa_call | list_comp | list_loop | binary_comp | binary_loop.
+        function_call | mfa_call | list_comp | list_loop | list_foreach
+      | binary_comp | binary_loop.
 -type valid_operator_types() ::
         operator_plus | operator_minus | operator_times | operator_divide | operator_rem
       | operator_gt   | operator_lt    | operator_eq    | operator_eeq.
