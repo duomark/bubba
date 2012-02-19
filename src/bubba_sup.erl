@@ -8,6 +8,10 @@
 %%%------------------------------------------------------------------------------
 -module(bubba_sup).
 
+-license("New BSD").
+-copyright("(c) 2012, DuoMark International, Inc.  All rights reserved").
+-author(jayn).
+
 -behaviour(supervisor).
 
 %% External API
