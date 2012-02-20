@@ -27,6 +27,7 @@
 
 -spec start_link() -> {ok, pid()}.
 
+%% @doc Start the root BUBBA supervisor.
 start_link() ->
     supervisor:start_link({local, ?MODULE}, ?MODULE, {}).
 
@@ -40,6 +41,7 @@ start_link() ->
 -define(CHILD(I, ARGS), {I, {I, start_link, ARGS}, permanent, 5000, worker, [I]}).
 -define(SUPER(I, ARGS), {I, {I, start_link, ARGS}, permanent, infinity, supervisor, [I]}).
 
+%% @doc Initialize the root supervisor to manage a root dk_yaws supervisor and a BUBBA server.
 init({}) ->
     YawsSup = ?SUPER(dk_yaws_sup, []),
     BubbaServer = ?CHILD(bubba_server, []),
