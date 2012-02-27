@@ -3,7 +3,7 @@
 */*/*~
 */*/*/*~
 deps/
-app/ebin/
+bubba/ebin/
 rel/bubba
 erl_crash.dump
 */erl_crash.dump
