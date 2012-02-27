@@ -9,13 +9,14 @@ compile:
 	@./rebar compile
 
 dialyze: all
-	dialyzer -Wrace_conditions ebin
+	dialyzer -Wrace_conditions app/ebin
 
 gc:
 	@echo 'Removing all emacs backup files'
 	@rm -f *~
 	@rm -f */*~
 	@rm -f */*/*~
+	@rm -f */*/*/*~
 	@rm -f erl_crash.dump
 	@rm -f */erl_crash.dump
 	@rm -f */*/erl_crash.dump
@@ -36,7 +37,7 @@ realclean: clean relclean
 	@rm -rf deps/*
 	@rm -f erl_crash.dump
 	@rm -f */erl_crash_dump
-
+	@rm -f */*/erl_crash.dump
 
 test: all
 	ERL_LIBS=$(CURDIR):$(CURDIR)/deps ./rebar skip_deps=true eunit

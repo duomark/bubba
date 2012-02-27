@@ -211,7 +211,10 @@ make_tuple(Size) -> list_to_tuple(lists:seq(1,Size)).
 -spec operator_times ([{integer(), integer()}]) -> ok.
 -spec operator_divide([{integer(), integer()}]) -> ok.
 -spec operator_rem   ([{integer(), integer()}]) -> ok.
--spec operator_gt    ([{integer(), integer()}]) -> [integer()].
+-spec operator_gt    ([{integer(), integer()}]) -> ok.
+-spec operator_lt    ([{integer(), integer()}]) -> ok.
+-spec operator_eq    ([{integer(), integer()}]) -> ok.
+-spec operator_eeq   ([{integer(), integer()}]) -> ok.
 -spec function_call  (non_neg_integer()) -> ok.
 -spec mfa_call       (module(), atom(), non_neg_integer()) -> ok.
 -spec list_comp      ([non_neg_integer()]) -> ok.
@@ -225,10 +228,10 @@ operator_minus (Pairs) -> _ = [A-B || {A,B} <- Pairs], ok.
 operator_times (Pairs) -> _ = [A*B || {A,B} <- Pairs], ok.
 operator_divide(Pairs) -> _ = [A div B || {A,B} <- Pairs], ok.
 operator_rem   (Pairs) -> _ = [A rem B || {A,B} <- Pairs], ok.
-operator_gt    (Pairs) -> _ = [if A < B -> 1; true -> 0 end || {A,B} <- Pairs].
-operator_lt    (Pairs) -> _ = [if A > B -> 1; true -> 0 end || {A,B} <- Pairs].
-operator_eq    (Pairs) -> _ = [if A == B -> 1; true -> 0 end || {A,B} <- Pairs].
-operator_eeq   (Pairs) -> _ = [if A =:= B -> 1; true -> 0 end || {A,B} <- Pairs].
+operator_gt    (Pairs) -> _ = [if A < B -> 1; true -> 0 end || {A,B} <- Pairs], ok.
+operator_lt    (Pairs) -> _ = [if A > B -> 1; true -> 0 end || {A,B} <- Pairs], ok.
+operator_eq    (Pairs) -> _ = [if A == B -> 1; true -> 0 end || {A,B} <- Pairs], ok.
+operator_eeq   (Pairs) -> _ = [if A =:= B -> 1; true -> 0 end || {A,B} <- Pairs], ok.
     
 function_call(0) -> ok;
 function_call(Count) when Count > 0 ->
