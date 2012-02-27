@@ -9,7 +9,7 @@ compile:
 	@./rebar compile
 
 dialyze: all
-	dialyzer -Wrace_conditions app/ebin
+	dialyzer -Wrace_conditions bubba/ebin
 
 gc:
 	@echo 'Removing all emacs backup files'
