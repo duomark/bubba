@@ -1,0 +1,111 @@
+body {
+  background-color: #FFFFFF;
+  color: #4B484E;
+  font: normal 100% sans-serif;
+}
+
+h1 {
+  font-size: 1.25em;     /* 20px/16px */
+  font-style: italic;
+  font-weight: normal;
+  text-align: center;
+  color: #9D2D23;
+}
+
+h2 {
+  font-size: 1.00em;    /* 16px/16px */
+  font-style: italic;
+  font-weight: normal;
+  color: #9D2D23;
+}
+
+h3 {
+  font-size: 0.875em;   /* 14px/16px */
+  font-style: italic;
+  font-weight: normal;
+}
+
+.page {
+  background-color: #FFFFFF;
+  width: 90%;
+  height: 100%;
+  margin: 36px auto;
+}
+
+.page_hdr {
+  clear: both;
+  height: 40px;
+  border-bottom: solid #9D2D23 1px;
+}
+.page_ftr {
+  clear: both;
+  border-top: solid #9D2D23 1px;
+}
+
+.content {
+  margin: 0 auto 53px;
+  width: 93.75%;        /* 900px/960px */
+}
+
+.content .benchmark {
+  float: left;
+  width: 36.7777778%   /* 331/px/960px */
+}
+
+.content .bench_form_hdr {
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+}
+.content .bench_form {
+  height: 150px;
+  line-height: 30px;
+  margin-left: 40px;
+}
+.content .bench_form .li {
+  height: 30px;
+  line-height: 30px;
+}
+.content .bench_form_ftr {
+  height: 60px;
+}
+
+.content .main {
+  float: right;
+  text-align: center;
+  width: 62.8888889%;   /* 566/px/960px */
+}
+
+.main .main_hdr    {
+  clear: both;
+  height: 70px;
+  line-height: 70px;
+  text-align: center;
+}
+.main .main_ftr    {
+  clear: both;
+}
+.main .bench_graph {
+  height: 200px;
+}
+.main .bench_data  {
+  height: 200px;
+}
+
+
+/* Descriptive formatting */
+
+#benchmark_desc {
+  padding: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 0.85em;
+  width: 350px;
+  height: 350px;
+  text-align: center;
+}
+
+.desc1 {font-size: .75em; font-weight: normal; color: hsla(0,0%,0%,.5); right: 0.5em; top: 2.55em;}
+.desc2 {font-size: .75em; font-weight: normal; color: hsla(0,0%,0%,.5); right: 0.5em; top: 3.50em;}
+.desc3 {font-size: .75em; font-weight: normal; color: hsla(0,0%,0%,.5); right: 0.45em; top: 4.55em;}
+
