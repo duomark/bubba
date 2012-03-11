@@ -13,13 +13,8 @@ dialyze: all
 
 gc:
 	@echo 'Removing all emacs backup files'
-	@rm -f *~
-	@rm -f */*~
-	@rm -f */*/*~
-	@rm -f */*/*/*~
-	@rm -f erl_crash.dump
-	@rm -f */erl_crash.dump
-	@rm -f */*/erl_crash.dump
+	@find . -name "*~" -exec rm -f {} \;
+	@find . -name "erl_crash.dump" -exec rm -f {} \;
 
 rel: all
 	@echo 'Generating bubba release'
@@ -35,9 +30,6 @@ relclean:
 realclean: clean relclean
 	@./rebar del-deps
 	@rm -rf deps/*
-	@rm -f erl_crash.dump
-	@rm -f */erl_crash_dump
-	@rm -f */*/erl_crash.dump
 
 test: all
 	ERL_LIBS=$(CURDIR):$(CURDIR)/deps ./rebar skip_deps=true eunit
