@@ -1,6 +1,6 @@
 ## Name of the node
 -name bubba@127.0.0.1
--dk_yaws_root ../lib/bubba-0.0.1/priv/
+-dk_yaws_docroot lib/bubba-0.0.1/priv/
 -dk_yaws_ip localhost
 -dk_yaws_port 8080
         
