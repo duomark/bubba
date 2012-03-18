@@ -1,34 +1,35 @@
 <html>
-<head>
-  <meta charset="UTF-8">
-  <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<meta charset="UTF-8">
+<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
-  <meta name="Copyright" content="&copy;2005-2006 DuoMark International, Inc." />
-  <title>DuoMark Comparative Erlang Benchmarking</title>
+<meta name="Copyright" content="&copy;2005-2006 DuoMark International, Inc." />
+<title>DuoMark Comparative Erlang Benchmarking</title>
 
-  <link rel="stylesheet" href="/css/reset.css" media="screen, projection">
-  <link rel="stylesheet" href="/css/theme.css" media="screen, projection">
+<link rel="stylesheet" href="/css/reset.css" media="screen, projection">
+<link rel="stylesheet" href="/css/theme.css" media="screen, projection">
 
-  <style>
-  .bench_graph svg {
-    font: 10px sans-serif;
-    background-color: #9D2D23;
-    text-align: right;
-    padding: 3px;
-    margin: 1px;
-    margin-left:20px;
-    fill: #9D2D23;
-  }
+<style>
+.bench_graph svg {
+  font: 10px sans-serif;
+  background-color: #9D2D23;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  margin-left:20px;
+  fill: #9D2D23;
+}
 
-  .bench_graph rect {
-    stroke: white;
-    fill: #9D2D23;
-  }
-  </style>
-</head>
+.area { fill: #969696 }
+.line { fill: none; stroke: #000; stroke-width: 1.5px }
+
+.bench_graph rect {
+  stroke: white;
+  fill: #9D2D23;
+}
+</style>
 <body onload="change_bench_menu('data_access'); change_bench_desc('list_nth')">
-  <div class="page">
-   <div class="content">
+  <section class="page">
+   <section class="content">
     <header class="page_hdr">
       <h1>Erlang Benchmark Comparisons</h1>
     </header>
@@ -77,69 +78,83 @@
     <footer class="page_ftr">
       <a href="http://www.duomark.com/"><img style="float:right" src="/icons/dmlogo.gif" valign="bottom"></a>
     </footer>
-   </div> <!-- /end .content -->
-  </div> <!-- /end .page -->
-        <script defer src="/js/d3.min.js"></script>
-        <script defer src="/js/bench_menus.js"></script>
-        <script defer>
+   </section> <!-- /end .content -->
+  </section> <!-- /end .page -->
+  <script src="/js/bench_menus.js"></script>
+  <script src="/js/d3.v2.js"></script>
+  <script src="/js/dk_chart.js"></script>
 
-          function d3_submit() {
-            var form = document.benchmark_request;
-            var datasize = form.datasize.value ? form.datasize.value : '0';
-            var url = [
-                       window.location, 'bench_results.yaws?',
-                       'bench_type=',   form.bench_type.value,
-                       '&bench=',       form.bench.value,
-                       '&datasize=',    datasize,
-                       '&num_execs=',   form.num_execs.value,
-                       '&test_times=',  form.test_times.value
-                      ].join('');
+  <script>
+    function make_url() {
+       var form = document.benchmark_request;
+       var datasize = form.datasize ? (form.datasize.value ? form.datasize.value : '0') : '0';
+       var url = [
+                  window.location, '/bench_results.yaws?',
+                  'bench_type=',   form.bench_type.value,
+                  '&bench=',       form.bench.value,
+                  '&datasize=',    datasize,
+                  '&num_execs=',   form.num_execs.value,
+                  '&test_times=',  form.test_times.value
+                 ].join('');
+       return url;
+     }
 
-            d3.json(url, function(json) {
-                var len = json.results.length;
-                var data = [];
-                for (i=0;i<len-1;i++) {
-                  data.push(json.results[i].loop_time.npm);
-                }
-                var chart = d3.select(".graph_area");
-                chart.selectAll("svg").remove();
+     function d3_submit() {
+       d3.json(make_url(), function(json) {
+            var len = (json && json.results) ? json.results.length : 0;
+            var data = [];
+            for (i=0; i<len-1; i++) {
+              data.push([i, json.results[i].loop_time.ms]);
+            }
 
-                chart.selectAll("svg").data(data).enter().append("svg:svg")
-                     .attr("width", 600).attr("height", 20);
-                var x = d3.scale.linear().domain([0, d3.max(data)]).range([0, 600]);
-  
-                chart.selectAll("rect").data(data).enter().append("svg:rect")
-                     .attr("class", "bench_graph")
-                     .attr("y", function(d, i) { return i * 20; })
-                     .attr("width", x).attr("height", 20);
-                var y = d3.scale.ordinal().domain(data).rangeBands([0, 120]);
-                chart.selectAll("rect").data(data).enter().append("svg:rect")
-                     .attr("y", y).attr("width", x).attr("height", y.rangeBand());
+            // chart.selectAll("svg").remove();
+            var chart = bubba_time_series_chart()
+                .x(function(d) {return d[0]})
+                .y(function(d) {return d[1]});
+//                .x(function(d) {return d.ms})
+//                .y(function(d) {return d.npm});
 
-                chart.selectAll("text").data(data).enter().append("svg:text")
-                     .attr("x", x).attr("y", function(d) { return y(d) + y.rangeBand() / 2; })
-                     .attr("dx", -3).attr("dy", ".35em")
-                     .attr("text-anchor", "end").text(String);
-
-//               var chart = d3.select(".bench_graph").append("svg:svg")
-                chart.selectAll("content").append("svg:svg")
-                              .attr("class", "bench_graph")
-                              .attr("width", 600).attr("height", 140)
-                              .append("svg:g").attr("transform", "translate(10,15)");
-
-                chart.selectAll("line").data(x.ticks(10)).enter().append("svg:line")
-                     .attr("x1", x).attr("x2", x)
-                     .attr("y1", 0).attr("y2", 120)
-                     .attr("stroke", "#ccc");
-
-                chart.selectAll("text.rule").data(x.ticks(10)).enter().append("svg:text")
-                     .attr("class", "rule")
-                     .attr("x", x).attr("y", 0)
-                     .attr("dy", -3).attr("text-anchor", "middle").text(String);
-
-                chart.append("svg:line").attr("y1", 0).attr("y2", 120).attr("stroke", "#000");
-            });
-          }
-        </script>
-</body>
-</html>
+            d3.select(".graph_area")
+              .datum(data).call(chart);
+      });
+    }
+  </script>
+            
+<!--
+//            var chart = d3.select(".graph_area");
+//
+//            chart.selectAll("svg").data(data).enter().append("svg:svg")
+//                 .attr("width", 600).attr("height", 20);
+//            var x = d3.scale.linear().domain([0, d3.max(data)]).range([0, 600]);
+//  
+//            chart.selectAll("rect").data(data).enter().append("svg:rect")
+//                 .attr("class", "bench_graph")
+//                 .attr("y", function(d, i) { return i * 20; })
+//                 .attr("width", x).attr("height", 20);
+//            var y = d3.scale.ordinal().domain(data).rangeBands([0, 120]);
+//            chart.selectAll("rect").data(data).enter().append("svg:rect")
+//                 .attr("y", y).attr("width", x).attr("height", y.rangeBand());
+//
+//            chart.selectAll("text").data(data).enter().append("svg:text")
+//                 .attr("x", x).attr("y", function(d) { return y(d) + y.rangeBand() / 2; })
+//                 .attr("dx", -3).attr("dy", ".35em")
+//                 .attr("text-anchor", "end").text(String);
+//
+//            var chart = d3.select(".bench_graph").append("svg:svg")
+//            chart.selectAll("content").append("svg:svg")
+//                 .attr("class", "bench_graph")
+//                 .attr("width", 600).attr("height", 140)
+//              .append("svg:g").attr("transform", "translate(10,15)");
+//
+//            chart.selectAll("line").data(x.ticks(10)).enter().append("svg:line")
+//                 .attr("x1", x).attr("x2", x)
+//                 .attr("y1", 0).attr("y2", 120)
+//                 .attr("stroke", "#ccc");
+//
+//            chart.selectAll("text.rule").data(x.ticks(10)).enter().append("svg:text")
+//                 .attr("class", "rule")
+//                 .attr("x", x).attr("y", 0)
+//                 .attr("dy", -3).attr("text-anchor", "middle").text(String);
+//
+//            chart.append("svg:line").attr("y1", 0).attr("y2", 120).attr("stroke", "#000");
+-->

@@ -8,26 +8,26 @@ out(A) ->
         list_to_integer(ExecCount), list_to_integer(NumTimes)).
 
 bench(data_access, FunType, DataSize, ExecCount, NumTimes) ->
-  Proplist = dk_bench_server:access(FunType, DataSize, ExecCount, NumTimes),
+  Proplist = bubba_server:access(FunType, DataSize, ExecCount, NumTimes),
   {content, "application/json", result_to_json(Proplist)};
 bench(operator, FunType, _DataSize, ExecCount, NumTimes) ->
-    Proplist = dk_bench_server:exec(FunType, ExecCount, NumTimes),
+    Proplist = bubba_server:exec(FunType, ExecCount, NumTimes),
     {content, "application/json", result_to_json(Proplist)};
 bench(iterate, FunType, _DataSize, ExecCount, NumTimes) ->
-    Proplist = dk_bench_server:exec(FunType, ExecCount, NumTimes),
+    Proplist = bubba_server:exec(FunType, ExecCount, NumTimes),
     {content, "application/json", result_to_json(Proplist)};
 bench(process, FunType, _DataSize, ExecCount, NumTimes) ->
-    Proplist = dk_bench_server:exec(FunType, ExecCount, NumTimes),
+    Proplist = bubba_server:exec(FunType, ExecCount, NumTimes),
     {content, "application/json", result_to_json(Proplist)};
 bench(message, recv_msgs, _DataSize, NumMsgs, NumTimes) ->
-  Proplist = dk_bench_server:mq_raw(NumMsgs, NumTimes),
+  Proplist = bubba_server:mq_raw(NumMsgs, NumTimes),
   {content, "application/json", result_to_json(Proplist, recv_time)};
 bench(message, send_msgs, _DataSize, NumMsgs, NumTimes) ->
-  Proplist = dk_bench_server:mq_raw(NumMsgs, NumTimes),
+  Proplist = bubba_server:mq_raw(NumMsgs, NumTimes),
   {content, "application/json", result_to_json(Proplist, send_time)}.
 
-result_to_json({Type, Results}) ->
-  ["{\"type\":\"", atom_to_list(Type), "\", \"results\": [",
+result_to_json(Results) ->
+  ["{\"results\": [",
     [ ["{\"loop_time\": {\"ms\": ", io_lib:format("~p", [MS]), ", \"npm\": ", io_lib:format("~p", [NPM]), "}},"]
        || [{loop_time, {MS, ms}, {NPM, nanos_per}}] <- Results],
    "{}]}"].
@@ -35,7 +35,7 @@ result_to_json({Type, Results}) ->
 
 result_to_json({Type, Results}, MsgType) ->
   MsgTimes = [ [ {TestType, Ms, Nano} || {TestType, Ms, Nano} <- R, TestType =:= MsgType ] || R <- Results],
-  ["{\"type\":\"", atom_to_list(Type), "\", \"results\": [",
+  ["{\"results\": [",
     [ ["{\"loop_time\": {\"ms\": ", io_lib:format("~p", [MS]), ", \"npm\": ", io_lib:format("~p", [NPM]), "}},"]
        || [{MsgType, {MS, ms}, {NPM, nanos_per}}] <- MsgTimes],
    "{}]}"].

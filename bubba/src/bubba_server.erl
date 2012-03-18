@@ -183,7 +183,7 @@ get_mq_results(NumMsgs, TimesToRun) ->
     rpt_results(bubba_mq_raw:run_test(NumMsgs, TimesToRun, bubba_mq_data:msgs())).
 
 rpt_results([{proc_lib, NumMsgs, Props}]) ->
-    [ {Key, {Micros / 1000, milliseconds}, {Micros / NumMsgs, microseconds_per_msg}}
+    [ {Key, {Micros / 1000, ms}, {Micros / NumMsgs * 1000, nanos_per}}
       || {Key, Micros} <- Props ];
 rpt_results(PropList) ->
     [
