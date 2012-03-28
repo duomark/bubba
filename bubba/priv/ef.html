@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>impress.js | presentation tool based on the power of CSS3 transforms and transitions in modern browsers | by Bartek Szopka @bartaz</title>
+    
+    <meta name="description" content="BUBBA Erlang Factory 2012 SF" />
+    <meta name="author" content="Jay Nelson" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="css/impress-demo.css" rel="stylesheet" />
+    
+    <link rel="shortcut icon" href="favicon.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+</head>
+
+<body class="impress-not-supported">
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+<div id="impress">
+    <div id="start" class="step slide" data-x="-1000" data-y="-1500">
+        <q id="banner">BUBBA</q>
+        <q id="subbanner">Benchmarking Using Browser-Based Animation</q>
+    </div>
+    <div class="step slide" data-x="0" data-y="-1500">
+        <q>What if you could directly observe the relative performance of your code?</q>
+    </div>
+    <div class="step slide" data-x="1000" data-y="-1500">
+    </div>
+    <div class="step slide" data-x="2000" data-y="-1500">
+       <div id="draw">
+         <svg  xmlns="http://www.w3.org/2000/svg"
+               xmlns:xlink="http://www.w3.org/1999/xlink">
+           <g>
+             <rect x="20" y="10" height="480" width="200"
+                 style="stroke:#ff0000; fill: #fff" stroke-dasharray="4 4" />
+
+             <rect x="40" y="100" height="160" width="155"
+                 style="stroke:#ff0000; fill: #fff;" rx="15" ry="15" />
+               <text x="70" y="155">HTML</text>
+               <text x="75" y="195">Form</text>
+
+             <rect x="40" y="300" height="80" width="155"
+                 style="stroke:#ff0000; fill: #fff" rx="15" ry="15"/>
+             <text x="80" y="350">User</text>
+           </g>
+           <g>
+             <rect x="285" y="10" height="480" width="200"
+                 style="stroke:#ff0000; fill: #fff" stroke-dasharray="4 4" />
+
+             <rect x="305" y="100" height="80" width="155"
+                 style="stroke:#ff0000; fill: #fff" rx="15" ry="15"/>
+             <text x="350" y="150">Yaws</text>
+
+             <rect x="305" y="215" height="160" width="155"
+                 style="stroke:#ff0000; fill: #fff;" rx="15" ry="15" />
+               <text x="345" y="285">Erlang</text>
+               <text x="360" y="325">App</text>
+           </g>
+           <g>
+             <rect x="540" y="10" height="480" width="200"
+                 style="stroke:#ff0000; fill: #fff" stroke-dasharray="4 4" />
+
+             <rect x="565" y="100" height="280" width="155"
+                 style="stroke:#ff0000; fill: #fff" rx="15" ry="15"/>
+               <text x="610" y="220">SVG</text>
+               <text x="580" y="255">Graphics</text>
+               <text x="585" y="295">Display</text>
+           </g>
+         </svg>
+      </div>
+      <div id="group">
+         <p id="browser">HTML5 Browser</p>
+      </div>
+      <div id="group">
+         <p id="rebar">rebar app</p>
+      </div>
+      <div id="group">
+         <p id="d3">d3</p>
+      </div>
+    </div>
+
+    <div class="step slide" data-x="3000" data-y="-1500">
+        <q>Embedding YAWS</q>
+        <ul style="margin-left:60px; list-style-type:disc; line-height:50px; margin-top:30px">
+        <li>http://github.com/duomark/dk_yaws</li>
+        <li id="highlight">Refer to yaws application (dk_yaws.app.src)</li>
+        <li>Add supervisor initialization (dk_yaws_server.erl)</li>
+        <li>Specify configuration parameters</li>
+        </ul>
+    </div>
+
+    <div id="its-in-3d" class="step" data-x="3000" data-y="-1000" data-z="-100" data-rotate-x="-84.3">
+       <q>src/dk_yaws.app.src</q>
+       <ol style="margin:30px; font-size:16px; white-space:pre; overflow:auto; line-height:10px;
+                  font-family:'Courier New',Courier,mono; list-style-type:decimal;
+                  width: 90%; border:1px solid rgba(0,0,0,.7); padding:10px">
+       <li><code>{application, dk_yaws,</code></li>
+       <li><code> [</code></li>
+       <li><code>  {id,  "DK-yaws"},</code></li>
+       <li><code>  {vsn, "0.1.1"},</code></li>
+       <li><code>  {description, "DuoMark embedded yaws webserver"},</code></li>
+       <li><code>  {modules, []},</code></li>
+       <li><code>  {registered, [dk_yaws_app, dk_yaws_sup, dk_yaws_server]},</code></li>
+       <li><code>  {applications, [kernel, stdlib, sasl, gs, appmon]},</code></li>
+       <li><code>  {included_applications, [crypto, ssl, inets, yaws]},</code></li>
+       <li><code>  {mod, {dk_yaws_app, []}},</code></li>
+       <li><code>  {env, []}</code></li>
+       <li><code>]}.</code></li>
+       </ol>
+    </div>
+
+    <div class="step slide" data-x="3000" data-y="-1500">
+        <q>Embedding YAWS</q>
+        <ul style="margin-left:60px; list-style-type:disc; line-height:50px; margin-top:30px">
+        <li>http://github.com/duomark/dk_yaws</li>
+        <li>Refer to yaws application (dk_yaws.app.src)</li>
+        <li id="highlight">Add supervisor initialization (dk_yaws_server.erl)</li>
+        <li>Specify configuration parameters</li>
+        </ul>
+    </div>
+
+    <div id="its-in-3d" class="step" data-x="3000" data-y="-1000" data-z="-100" data-rotate-x="-84.3">
+       <q>src/dk_yaws_server.erl</q>
+       <ol style="margin:30px; font-size:16px; white-space:pre; overflow:auto; line-height:10px;
+                  font-family:'Courier New',Courier,mono; list-style-type:decimal;
+                  width: 90%; border:1px solid rgba(0,0,0,.7); padding:10px">
+        <li><code>run() -></code></li>
+        <li><code>  GconfList = [{id, ?APP_ID}],</code></li>
+        <li><code>  SconfList = get_params(?PARAM_LIST),</code></li>
+        <li><code>  Docroot = proplists:get_value(?APP_PARAM_DOCROOT, SconfList),</code></li>
+        <li><code>  {ok, SCList, GC, ChildSpecs} =</code></li>
+        <li><code>     yaws_api:embedded_start_conf(Docroot, SconfList, GconfList, ?APP_ID),</code></li>
+        <li><code>  [supervisor:start_child(dk_yaws_sup, Ch) || Ch <- ChildSpecs],</code></li>
+        <li><code>  yaws_api:setconf(GC, SCList),</code></li>
+        <li><code>  {ok, self()}.</code></li>
+       </ol>
+    </div>
+
+    <div class="step slide" data-x="3000" data-y="-1500">
+        <q>Embedding YAWS</q>
+        <ul style="margin-left:60px; list-style-type:disc; line-height:50px; margin-top:30px">
+        <li>http://github.com/duomark/dk_yaws</li>
+        <li>Refer to yaws application (dk_yaws.app.src)</li>
+        <li>Add supervisor initialization (dk_yaws_server.erl)</li>
+        <li id="highlight">Specify configuration parameters</li>
+        </ul>
+    </div>
+
+    <div id="its-in-3d" class="step" data-x="3000" data-y="-1000" data-z="-100" data-rotate-x="-84.3">
+       <q>rel/files/vm.args</q>
+       <ol style="margin:30px; font-size:16px; white-space:pre; overflow:auto; line-height:10px;
+                  font-family:'Courier New',Courier,mono; list-style-type:decimal;
+                  width: 90%; border:1px solid rgba(0,0,0,.7); padding:10px">
+          <li><code>%% vsn parameters<code></li>
+          <li><code>{dk_yaws_vsn, "0.1.1"}.<code></li>
+          <li><code><code></li>
+          <li><code>%% vm.args parameters<code></li>
+          <li><code>{node_cookie, "dk_yaws"}.<code></li>
+          <li><code>{node_name,   "dk_yaws@127.0.0.1"}.<code></li>
+          <li><code><code></li>
+          <li><code>%% app.config parameters<code></li>
+          <li><code>{default_port,    "8000"}.<code></li>
+          <li><code>{default_ip,      "\"0.0.0.0\""}.<code></li>
+          <li><code>{default_docroot, "\"lib/dk_yaws-{{dk_yaws_vsn}}/priv/\""}.<code></li>
+          <li><code>
+       </ol>
+    </div>
+
+    <div class="step slide" data-x="3000" data-y="-1500">
+        <q>Embedding YAWS</q>
+        <ul style="margin-left:60px; list-style-type:disc; line-height:50px; margin-top:30px">
+        <li>http://github.com/duomark/dk_yaws</li>
+        <li>Refer to yaws application (dk_yaws.app.src)</li>
+        <li>Add supervisor initialization (dk_yaws_server.erl)</li>
+        <li>Specify configuration parameters</li>
+        </ul>
+    </div>
+
+
+    <!-- div class="step slide" data-x="3000" data-y="-1500">
+        <q>Including dk_yaws in another application</q>
+    </div>
+    <div class="step slide" data-x="4000" data-y="-1500">
+        <q>Interface to benchmarks</q>
+        <q>Funcalls, Count, NumTimes</q>
+        <q>NumMsgs</q>
+    </div>
+    <div class="step slide" data-x="5000" data-y="-1500">
+        <q>d3 Intro</q>
+    </div>
+    <div class="step slide" data-x="6000" data-y="-1500">
+        <q>Specifying reusable, embeddable charts</q>
+    </div>
+    <div class="step slide" data-x="7000" data-y="-1500">
+        <q>Animation</q>
+    </div>
+    <div class="step slide" data-x="8000" data-y="-1500">
+        <q>Key elements</q>
+        <q>Browser input</q>
+        <q>Server for JSON generation</q>
+        <q>Declarative display of results</q>
+    </div>
+    <div class="step slide" data-x="9000" data-y="-1500">
+        <q>Animation</q>
+    </div -->
+</div>
+
+<div class="hint">
+    <p>Use a spacebar or arrow keys to navigate</p>
+</div>
+<script>
+if ("ontouchstart" in document.documentElement) { 
+    document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+}
+</script>
+
+<script src="js/impress.js"></script>
+<script>impress().init();</script>
+</body>
+</html>
