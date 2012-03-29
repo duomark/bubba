@@ -106,10 +106,10 @@ body     { pointer-events: none; }
 #subbanner { text-align: center; font-size: 36px; }
 
 .step #draw  { min-width:700px; height:500px; background-color:#eeeeee; margin-bottom:30px}
-.step #group { font-size:30px; min-width:235px; height:80px; padding:12px; float:left; }
+.step #group { font-size:30px; max-width:235px; height:80px; padding:12px; margin-left:250px }
 
 #browser {text-align:center; border:1px solid rgba(0,0,0,1.0); margin-bottom:30px}
-#rebar {text-align:center; border:1px solid rgba(0,0,0,1.0); margin-bottom:30px}
+#user_caption {text-align:center; border:1px solid rgba(0,0,0,1.0); margin-bottom:30px}
 #d3 {text-align:center; border:1px solid rgba(0,0,0,1.0); margin-bottom:30px}
 
 .highlight {color:rgba(235,55,43,1.0)}
