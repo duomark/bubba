@@ -102,8 +102,8 @@ body     { pointer-events: none; }
 #impress { pointer-events: auto; }
 
 /* custom bubba styles */
-#banner    { text-align: center; margin:150px 0px 0px }
-#subbanner { text-aling: center; font-size: 36px }
+#banner    { text-align: center; margin:150px 0px 0px; }
+#subbanner { text-align: center; font-size: 36px; }
 
 .step #draw  { min-width:700px; height:500px; background-color:#eeeeee; margin-bottom:30px}
 .step #group { font-size:30px; min-width:235px; height:80px; padding:12px; float:left; }
@@ -112,8 +112,7 @@ body     { pointer-events: none; }
 #rebar {text-align:center; border:1px solid rgba(0,0,0,1.0); margin-bottom:30px}
 #d3 {text-align:center; border:1px solid rgba(0,0,0,1.0); margin-bottom:30px}
 
-
-#highlight {color:rgba(235,55,43,1.0)}
+.highlight {color:rgba(235,55,43,1.0)}
 
 /* COMMON STEP STYLES */
 
@@ -146,7 +145,11 @@ body     { pointer-events: none; }
     opacity: 0.3;
 }
 
-#its-in-3d:not(.active) {
+#yaws-3d:not(.active) {
+    opacity: 0.0;
+}
+
+#js-3d:not(.active) {
     opacity: 0.0;
 }
 
@@ -335,6 +338,9 @@ body     { pointer-events: none; }
     font-size: 60px;
 }
 
+/* yaws 3D */
+
+
 /* it's in 3D */
 
 #its-in-3d p {
@@ -473,8 +479,7 @@ body     { pointer-events: none; }
     font-size: 50px;
     line-height: 72px;
 
-/*    margin-top: 100px; */
-    margin-top: 50px;
+    margin-top: 100px;
 }
 
 .slide q strong {

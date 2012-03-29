@@ -4,12 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1024" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <title>impress.js | presentation tool based on the power of CSS3 transforms and transitions in modern browsers | by Bartek Szopka @bartaz</title>
+    <title>BUBBA: Benchmarking Using Browser-Based Animation</title>
     
     <meta name="description" content="BUBBA Erlang Factory 2012 SF" />
     <meta name="author" content="Jay Nelson" />
 
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+    <!-- link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" / -->
 
     <link href="css/impress-demo.css" rel="stylesheet" />
     
@@ -23,16 +23,41 @@
     <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
 </div>
 <div id="impress">
-    <div id="start" class="step slide" data-x="-1000" data-y="-1500">
+
+    <div id="start" class="step slide" data-x="0" data-y="0">
         <q id="banner">BUBBA</q>
-        <q id="subbanner">Benchmarking Using Browser-Based Animation</q>
+        <q id="subbanner">
+           Benchmarking Using Browser-Based Animation
+           <ul style="text-align:left; margin-left: 190px; line-height:30px; margin-top:30px; font-size:28px">
+           <li>http://github.com/duomark/dk_yaws</li>
+           <li>http://github.com/duomark/bubba</li>
+           </ul>
+        </q>
+
+        <ul style="line-height:30px; margin-top:30px; font-size:24px">
+        <li style="color:#9d2d23; text-align:center">Jay Nelson (@duomark)</li>
+        <li style="color:#9d2d23; text-align:center">http://duomark.com/</li>
+        </ul>
     </div>
-    <div class="step slide" data-x="0" data-y="-1500">
+
+    <div class="step slide" data-x="1000" data-y="0">
         <q>What if you could directly observe the relative performance of your code?</q>
     </div>
-    <div class="step slide" data-x="1000" data-y="-1500">
+
+    <div class="step slide" data-x="2000" data-y="0">
     </div>
-    <div class="step slide" data-x="2000" data-y="-1500">
+
+    <div class="step slide" data-x="3000" data-y="0">
+        <q>BUBBA Application Elements</q>
+        <ul style="margin-left:60px; list-style-type:disc; line-height:50px; margin-top:30px">
+        <li>Browser for user input</li>
+        <li>YAWS to parse and reply to user requests</li>
+        <li>Erlang server to run benchmark</li>
+        <li>JSON for easy d3 integration</li>
+        </ul>
+    </div>
+
+    <div class="step slide" data-x="4000" data-y="0">
        <div id="draw">
          <svg  xmlns="http://www.w3.org/2000/svg"
                xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -85,18 +110,18 @@
       </div>
     </div>
 
-    <div class="step slide" data-x="3000" data-y="-1500">
+    <div class="step slide" data-x="5000" data-y="0">
         <q>Embedding YAWS</q>
         <ul style="margin-left:60px; list-style-type:disc; line-height:50px; margin-top:30px">
         <li>http://github.com/duomark/dk_yaws</li>
-        <li id="highlight">Refer to yaws application (dk_yaws.app.src)</li>
+        <li class="highlight">Refer to yaws application (dk_yaws.app.src)</li>
         <li>Add supervisor initialization (dk_yaws_server.erl)</li>
-        <li>Specify configuration parameters</li>
+        <li>Specify configuration parameters (vm.args)</li>
         </ul>
     </div>
 
-    <div id="its-in-3d" class="step" data-x="3000" data-y="-1000" data-z="-100" data-rotate-x="-84.3">
-       <q>src/dk_yaws.app.src</q>
+    <div id="yaws-3d" class="step" data-x="5000" data-y="500" data-z="-100" data-rotate-x="-84.3">
+       <q>dk_yaws/src/dk_yaws.app.src</q>
        <ol style="margin:30px; font-size:16px; white-space:pre; overflow:auto; line-height:10px;
                   font-family:'Courier New',Courier,mono; list-style-type:decimal;
                   width: 90%; border:1px solid rgba(0,0,0,.7); padding:10px">
@@ -115,18 +140,18 @@
        </ol>
     </div>
 
-    <div class="step slide" data-x="3000" data-y="-1500">
+    <div class="step slide" data-x="5000" data-y="0">
         <q>Embedding YAWS</q>
         <ul style="margin-left:60px; list-style-type:disc; line-height:50px; margin-top:30px">
         <li>http://github.com/duomark/dk_yaws</li>
         <li>Refer to yaws application (dk_yaws.app.src)</li>
-        <li id="highlight">Add supervisor initialization (dk_yaws_server.erl)</li>
-        <li>Specify configuration parameters</li>
+        <li class="highlight">Add supervisor initialization (dk_yaws_server.erl)</li>
+        <li>Specify configuration parameters (vm.args)</li>
         </ul>
     </div>
 
-    <div id="its-in-3d" class="step" data-x="3000" data-y="-1000" data-z="-100" data-rotate-x="-84.3">
-       <q>src/dk_yaws_server.erl</q>
+    <div id="yaws-3d" class="step" data-x="5000" data-y="500" data-z="-100" data-rotate-x="-84.3">
+       <q>dk_yaws/src/dk_yaws_server.erl</q>
        <ol style="margin:30px; font-size:16px; white-space:pre; overflow:auto; line-height:10px;
                   font-family:'Courier New',Courier,mono; list-style-type:decimal;
                   width: 90%; border:1px solid rgba(0,0,0,.7); padding:10px">
@@ -142,73 +167,171 @@
        </ol>
     </div>
 
-    <div class="step slide" data-x="3000" data-y="-1500">
+    <div class="step slide" data-x="5000" data-y="0">
         <q>Embedding YAWS</q>
         <ul style="margin-left:60px; list-style-type:disc; line-height:50px; margin-top:30px">
         <li>http://github.com/duomark/dk_yaws</li>
         <li>Refer to yaws application (dk_yaws.app.src)</li>
         <li>Add supervisor initialization (dk_yaws_server.erl)</li>
-        <li id="highlight">Specify configuration parameters</li>
+        <li class="highlight">Specify configuration parameters (vm.args)</li>
         </ul>
     </div>
 
-    <div id="its-in-3d" class="step" data-x="3000" data-y="-1000" data-z="-100" data-rotate-x="-84.3">
-       <q>rel/files/vm.args</q>
+    <div id="yaws-3d" class="step" data-x="5000" data-y="500" data-z="-100" data-rotate-x="-84.3">
+       <q>dk_yaws/rel/files/vm.args</q>
        <ol style="margin:30px; font-size:16px; white-space:pre; overflow:auto; line-height:10px;
                   font-family:'Courier New',Courier,mono; list-style-type:decimal;
                   width: 90%; border:1px solid rgba(0,0,0,.7); padding:10px">
-          <li><code>%% vsn parameters<code></li>
-          <li><code>{dk_yaws_vsn, "0.1.1"}.<code></li>
-          <li><code><code></li>
-          <li><code>%% vm.args parameters<code></li>
-          <li><code>{node_cookie, "dk_yaws"}.<code></li>
-          <li><code>{node_name,   "dk_yaws@127.0.0.1"}.<code></li>
-          <li><code><code></li>
-          <li><code>%% app.config parameters<code></li>
-          <li><code>{default_port,    "8000"}.<code></li>
-          <li><code>{default_ip,      "\"0.0.0.0\""}.<code></li>
-          <li><code>{default_docroot, "\"lib/dk_yaws-{{dk_yaws_vsn}}/priv/\""}.<code></li>
-          <li><code>
+          <li><code>%% vsn parameters</code></li>
+          <li><code>{dk_yaws_vsn, "0.1.1"}.</code></li>
+          <li><code></code></li>
+          <li><code>%% vm.args parameters</code></li>
+          <li><code>{node_cookie, "dk_yaws"}.</code></li>
+          <li><code>{node_name,   "dk_yaws@127.0.0.1"}.</code></li>
+          <li><code></code></li>
+          <li><code>%% app.config parameters</code></li>
+          <li><code>{default_port,    "8000"}.</code></li>
+          <li><code>{default_ip,      "\"0.0.0.0\""}.</code></li>
+          <li><code>{default_docroot, "\"lib/dk_yaws-{{dk_yaws_vsn}}/priv/\""}.</code></li>
        </ol>
     </div>
 
-    <div class="step slide" data-x="3000" data-y="-1500">
+    <div class="step slide" data-x="5000" data-y="0">
         <q>Embedding YAWS</q>
         <ul style="margin-left:60px; list-style-type:disc; line-height:50px; margin-top:30px">
         <li>http://github.com/duomark/dk_yaws</li>
         <li>Refer to yaws application (dk_yaws.app.src)</li>
         <li>Add supervisor initialization (dk_yaws_server.erl)</li>
-        <li>Specify configuration parameters</li>
+        <li>Specify configuration parameters (vm.args)</li>
+    </div>
+
+    <div class="step slide" data-x="6000" data-y="0">
+        <q>d3 Introduction</q>
+        <ul style="margin-left:60px; list-style-type:disc; line-height:50px; margin-top:30px">
+        <li>http://github.com/mbostock/d3 (Square)</li>
+        <li>Data Driven Documents</li>
+        <li>Declarative mapping of dynamic data to DOM</li>
+        <li>Allows animated transformation of visual data</li>
+        <li>Enables reusable, embeddable visualizations</li>
+        <li>http://bost.ocks.org/mike/chart/</li>
         </ul>
     </div>
 
+    <div class="step slide" data-x="7000" data-y="0">
+        <q>Browser to erlang interface</q>
+        <ul style="margin-left:60px; list-style-type:disc; line-height:50px; margin-top:30px">
+        <li class="highlight">Form layout</li>
+        <li>JSON connection to erlang</li>
+        <li>YAWS app executes server code</li>
+        </ul>
+    </div>
 
-    <!-- div class="step slide" data-x="3000" data-y="-1500">
-        <q>Including dk_yaws in another application</q>
+    <div id="js-3d" class="step" data-x="7000" data-y="500" data-z="-100" data-rotate-x="-84.3">
+       <q>bubba/bubba/priv/index.yaws</q>
+       <ol style="margin:30px; font-size:16px; white-space:pre; overflow:auto; line-height:10px;
+                  font-family:'Courier New',Courier,mono; list-style-type:decimal;
+                  width: 90%; border:1px solid rgba(0,0,0,.7); padding:10px">
+
+         <li><code>< form name="benchmark_request" method="get" ></li></code>
+         <li><code>    < select ></li></code>
+         <li><code>    < option value="data_access" default> Data Access < /option ></li></code>
+         <li><code>    ... </li></code>
+         <li><code>    < /select ></li></code>
+         <li><code>  < input type="button" value="Run Benchmark" onclick="d3_submit()" /></p></li></code>
+         <li><code>< /form ></li></code>
+         <li><code>function make_url() {</li></code>
+         <li><code>  var url = [</li></code>
+         <li><code>             window.location, '/bench_results.yaws?',</li></code>
+         <li><code>             'bench_type=',   form.bench_type.value,</li></code>
+         <li><code>             '&bench=',       form.bench.value,</li></code>
+         <li><code>             ...</li></code>
+         <li><code>            ].join('');</li></code>
+         <li><code>  return url;</li></code>
+         <li><code>}</li></code>
+       </ol>
     </div>
-    <div class="step slide" data-x="4000" data-y="-1500">
-        <q>Interface to benchmarks</q>
-        <q>Funcalls, Count, NumTimes</q>
-        <q>NumMsgs</q>
+
+    <div class="step slide" data-x="7000" data-y="0">
+        <q>Browser to erlang interface</q>
+        <ul style="margin-left:60px; list-style-type:disc; line-height:50px; margin-top:30px">
+        <li>Form layout</li>
+        <li class="highlight">JSON connection to erlang</li>
+        <li>YAWS app executes server code</li>
+        </ul>
     </div>
-    <div class="step slide" data-x="5000" data-y="-1500">
-        <q>d3 Intro</q>
+
+    <div id="js-3d" class="step" data-x="7000" data-y="500" data-z="-100" data-rotate-x="-84.3">
+       <q>bubba/bubba/priv/index.yaws</q>
+       <ol style="margin:30px; font-size:16px; white-space:pre; overflow:auto; line-height:10px;
+                  font-family:'Courier New',Courier,mono; list-style-type:decimal;
+                  width: 90%; border:1px solid rgba(0,0,0,.7); padding:10px">
+
+         <li><code>function d3_submit() {</code></li>
+         <li><code>  d3.json(make_url(), function(json) {</code></li>
+         <li><code>    var len = (json && json.results) ? json.results.length : 0;</code></li>
+         <li><code>    var data = [];</code></li>
+         <li><code>    for (i=0; i < len-1; i++) {</code></li>
+         <li><code>     data.push([i, json.results[i].loop_time.ms]);</code></li>
+         <li><code>    }</code></li>
+         <li><code>
+         <li><code>   var chart = bubba_time_series_chart()</code></li>
+         <li><code>       .x(function(d) {return d[0]})</code></li>
+         <li><code>       .y(function(d) {return d[1]});</code></li>
+         <li><code>
+         <li><code>   d3.select(".graph_area")</code></li>
+         <li><code>     .datum(data).call(chart);</code></li>
+         <li><code>  });</code></li>
+         <li><code>}</code></li>
+       </ol>
     </div>
-    <div class="step slide" data-x="6000" data-y="-1500">
-        <q>Specifying reusable, embeddable charts</q>
+
+    <div class="step slide" data-x="7000" data-y="0">
+        <q>Browser to erlang interface</q>
+        <ul style="margin-left:60px; list-style-type:disc; line-height:50px; margin-top:30px">
+        <li>Form layout</li>
+        <li>JSON connection to erlang</li>
+        <li class="highlight">YAWS app executes server code</li>
+        </ul>
     </div>
-    <div class="step slide" data-x="7000" data-y="-1500">
-        <q>Animation</q>
+
+    <div id="js-3d" class="step" data-x="7000" data-y="500" data-z="-100" data-rotate-x="-84.3">
+       <q>bubba/bubba/priv/index.yaws</q>
+       <ol style="margin:30px; font-size:16px; white-space:pre; overflow:auto; line-height:10px;
+                  font-family:'Courier New',Courier,mono; list-style-type:decimal;
+                  width: 90%; border:1px solid rgba(0,0,0,.7); padding:10px">
+
+          <li><code>< erl ></li></code>
+          <li><code>out(A) -></li></code>
+          <li><code>  Query = yaws_api:parse_query(A),</li></code>
+          <li><code>  [BenchType, Bench, DataSize, ExecCount, NumTimes]</li></code>
+          <li><code>    = [proplists:get_value(Attr, Query)</li></code>
+          <li><code>       || Attr <- ["bench_type", "bench", "datasize",</li></code>
+          <li><code>                   "num_execs", "test_times"]],</li></code>
+          <li><code>  bench(list_to_atom(BenchType), list_to_atom(Bench),</li></code>
+          <li><code>        list_to_integer(DataSize), list_to_integer(ExecCount),</li></code>
+          <li><code>        list_to_integer(NumTimes)).</li></code>
+          <li><code></li></code>
+          <li><code>bench(data_access, FunType, DataSize, ExecCount, NumTimes) -></li></code>
+          <li><code>  Proplist = bubba_server:access(FunType, DataSize, ExecCount, NumTimes),</li></code>
+          <li><code>  {content, "application/json", result_to_json(Proplist)};</li></code>
+          <li><code>...</li></code>
+          <li><code>< /erl ></li></code>
+       </ol>
     </div>
-    <div class="step slide" data-x="8000" data-y="-1500">
-        <q>Key elements</q>
-        <q>Browser input</q>
-        <q>Server for JSON generation</q>
-        <q>Declarative display of results</q>
+
+    <div class="step slide" data-x="7000" data-y="0">
+        <q>Browser to erlang interface</q>
+        <ul style="margin-left:60px; list-style-type:disc; line-height:50px; margin-top:30px">
+        <li>Form layout</li>
+        <li>JSON connection to erlang</li>
+        <li>YAWS app executes server code</li>
+        </ul>
     </div>
-    <div class="step slide" data-x="9000" data-y="-1500">
-        <q>Animation</q>
-    </div -->
+
+    <div class="step slide" data-x="8000" data-y="0">
+        <q id="banner">Demo & Questions</q>
+    </div>
+
 </div>
 
 <div class="hint">
