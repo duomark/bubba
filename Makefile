@@ -1,38 +1,51 @@
-all: deps compile
+### Copyright (c) 2017, DuoMark International, Inc. All Rights Reserved.
+### Author Jay Nelson <jay@duomark.com>
 
-deps: deps/dk_yaws
+### Project name and version are defined by relx.config line:
+### {release, {esse, 0.2.0}, [esse]}
+PROJECT_AWK := awk '/^{release,/ {sub(/^{release, {/,       ""); sub(/,.*/,  ""); print}'
+VERSION_AWK := awk '/^{release,/ {sub(/^{release, [^ ]+ "/, ""); sub(/\".*/, ""); print}'
 
-deps/dk_yaws:
-	@./rebar get-deps
+PROJECT         := $(shell ${PROJECT_AWK} <relx.config)
+PROJECT_VERSION := $(shell ${VERSION_AWK} <relx.config)
+PROJECT_DESCRIPTION = Benchmarks Using Browser-Based Animation
 
-compile:
-	@./rebar compile
+HOST := `hostname`
+ROOT := $(shell pwd)
 
-dialyze: all
-	dialyzer -Wrace_conditions bubba/ebin
+# Set to always use 4 spaces on generated code
+SP=4
 
-gc:
-	@echo 'Removing all emacs backup files'
-	@find . -name "*~" -exec rm -f {} \;
-	@find . -name "erl_crash.dump" -exec rm -f {} \;
+# Change to V=1 for verbose debugging
+V=0
 
-rel: all
-	@echo 'Generating bubba release'
-	@(cd rel; ../rebar generate)
+DEPS = asciideck eper esse elli
 
-clean: gc
-	@./rebar clean
+dep_elli = v1.0.5
+dep_esse = git https://github.com/duomark/esse 0.2.0
 
-relclean:
-	@rm -f rel/erl_crash.dump
-	@rm -rf rel/bubba
+PLT_APPS = crypto
 
-realclean: clean relclean
-	@./rebar del-deps
-	@rm -rf deps/*
+ERLC_OPTS := +debug_info +"{cover_enabled, true}"
 
-test: all
-	ERL_LIBS=$(CURDIR):$(CURDIR)/deps ./rebar skip_deps=true eunit
+include erlang.mk
 
-eunit:
-	make test
+CMN_EFLAGS = \
+	-boot start_sasl \
+	-smp enable \
+	-setcookie ${COOKIE} \
+	-name ${PROJECT}@${HOST} \
+	+P 1000000 \
+	+K true +A 160 -sbt ts
+
+DEV_EFLAGS = \
+	-pa ${ROOT}/deps/*/ebin \
+	-pa ${ROOT}/ebin \
+	${CMN_EFLAGS}
+
+REL_EFLAGS = \
+	-pa ${ROOT_REL}/lib/*/ebin \
+	${CMN_EFLAGS}
+
+dev:
+	erl ${DEV_EFLAGS} -s bubba_app
