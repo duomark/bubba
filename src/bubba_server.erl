@@ -1,6 +1,8 @@
 %%%------------------------------------------------------------------------------
-%%% @copyright (c) 2012, DuoMark International, Inc.  All rights reserved
+%%% @copyright (c) 2012, 2017, DuoMark International, Inc.  All rights reserved
 %%% @author Jay Nelson <jay@duomark.com>
+%%% @reference The license is based on the template for Modified BSD from
+%%%   <a href="http://opensource.org/licenses/BSD-3-Clause">OSI</a>
 %%% @doc
 %%%   Benchmark server for invoking experimental performance tests.
 %%% @since v0.0.1
@@ -8,9 +10,9 @@
 %%%------------------------------------------------------------------------------
 -module(bubba_server).
 
--license("New BSD").
--copyright("(c) 2011, DuoMark International, Inc.  All rights reserved").
--author(jayn).
+-copyright("(c) 2011, 2017, DuoMark International, Inc.  All rights reserved").
+-author('Jay Nelson <jay@duomark.com>').
+-license('New BSD').
 
 -behaviour(gen_server).
 

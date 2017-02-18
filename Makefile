@@ -21,7 +21,7 @@ V=0
 
 DEPS = asciideck eper esse elli
 
-dep_elli = v1.0.5
+dep_elli = hex 2.0.1
 dep_esse = git https://github.com/duomark/esse 0.2.0
 
 PLT_APPS = crypto
@@ -49,3 +49,8 @@ REL_EFLAGS = \
 
 dev:
 	erl ${DEV_EFLAGS} -s bubba_app
+
+gc:
+	@echo 'Removing all emacs backup files'
+	@find . -name "*~" -exec rm -f {} \;
+	@find . -name "erl_crash.dump" -exec rm -f {} \;

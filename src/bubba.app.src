@@ -19,11 +19,14 @@
 
   {registered, [bubba_sup]},
   {modules,    [
-                bubba_app, bubba_env, bubba_sup
+                bubba_app, bubba_env, bubba_sup,
+                bubba_server, bubba_fun_calls,
+                bubba_mq_raw, bubba_mq_data,
+                bubba_view
                ]},
 
   {maintainers, ["Jay Nelson"]},
-  {licenses,    ["BSD-new"]},
+  {licenses,    ["New BSD"]},
   {links,       [{"Github", "https://github.com/duomark/bubba"}]}
  ]
 }.

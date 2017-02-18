@@ -13,9 +13,9 @@
 %%%------------------------------------------------------------------------------
 -module(bubba_env).
 
--license('New BSD').
--copyright("(c) 2012, 2017, DuoMark International, Inc.  All rights reserved").
+-copyright("(c) 2017, DuoMark International, Inc.  All rights reserved").
 -author('Jay Nelson <jay@duomark.com>').
+-license('New BSD').
 
 %% External API
 -export([get_port/0]).

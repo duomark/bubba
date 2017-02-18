@@ -13,9 +13,9 @@
 %%%------------------------------------------------------------------------------
 -module(bubba_sup).
 
--license('New BSD').
 -copyright("(c) 2012, 2017, DuoMark International, Inc.  All rights reserved").
 -author('Jay Nelson <jay@duomark.com>').
+-license('New BSD').
 
 -behaviour(supervisor).
 
@@ -42,7 +42,7 @@ start_link() ->
 -spec init({}) -> {ok, {supervisor:sup_flags(), [supervisor:child_spec()]}}.
 
 init({}) ->
-    Elli_Opts = [{callback, benchmark}, {port, bubba_env:get_port()}],
+    Elli_Opts = [{callback, bubba_view},  {port, bubba_env:get_port()}],
     Elli      = worker_child(elli,         start_link, [Elli_Opts]),
     Bubba     = worker_child(bubba_server, start_link, []),
     {ok, {one_for_one_sup_options(5,10), [Elli, Bubba]} }.

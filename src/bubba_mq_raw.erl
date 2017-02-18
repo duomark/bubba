@@ -1,6 +1,8 @@
 %%%------------------------------------------------------------------------------
-%%% @copyright (c) 2012, DuoMark International, Inc.  All rights reserved
+%%% @copyright (c) 2012, 2017, DuoMark International, Inc.  All rights reserved
 %%% @author Jay Nelson <jay@duomark.com>
+%%% @reference The license is based on the template for Modified BSD from
+%%%   <a href="http://opensource.org/licenses/BSD-3-Clause">OSI</a>
 %%% @doc
 %%%   Module to create a new process which receives messages and then times
 %%%   queueing and dequeueing of messages.
@@ -9,9 +11,9 @@
 %%%------------------------------------------------------------------------------
 -module(bubba_mq_raw).
 
--license("New BSD").
--copyright("(c) 2011, DuoMark International, Inc.  All rights reserved").
--author(jayn).
+-copyright("(c) 2012, 2017, DuoMark International, Inc.  All rights reserved").
+-author('Jay Nelson <jay@duomark.com>').
+-license('New BSD').
 
 %% External API
 -export([run_test/3]).
@@ -69,7 +71,7 @@ wait_and_get_results(Count, SendMicros) ->
 %% Generate N msgs randomly selected from a pre-built tuple.
 gen_msgs(0, _SrcMsgs, GenMsgs) -> GenMsgs;
 gen_msgs(N, SrcMsgs, GenMsgs) ->
-    M = random:uniform(tuple_size(SrcMsgs)),
+    M = rand:uniform(tuple_size(SrcMsgs)),
     gen_msgs(N-1, SrcMsgs, [element(M, SrcMsgs) | GenMsgs]).
 
     

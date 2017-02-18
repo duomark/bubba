@@ -1,5 +1,5 @@
 %%%------------------------------------------------------------------------------
-%%% @copyright (c) 2012,2017, DuoMark International, Inc.  All rights reserved
+%%% @copyright (c) 2012, 2017, DuoMark International, Inc.  All rights reserved
 %%% @author Jay Nelson <jay@duomark.com>
 %%% @reference The license is based on the template for Modified BSD from
 %%%   <a href="http://opensource.org/licenses/BSD-3-Clause">OSI</a>
@@ -12,9 +12,9 @@
 %%%------------------------------------------------------------------------------
 -module(bubba_app).
 
--license('New BSD').
 -copyright("(c) 2012, 2017, DuoMark International, Inc.  All rights reserved").
 -author('Jay Nelson <jay@duomark.com>').
+-license('New BSD').
 
 -behaviour(application).
 

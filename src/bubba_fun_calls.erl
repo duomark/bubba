@@ -1,6 +1,8 @@
 %%%------------------------------------------------------------------------------
-%%% @copyright (c) 2012, DuoMark International, Inc.  All rights reserved
+%%% @copyright (c) 2012, 2017, DuoMark International, Inc.  All rights reserved
 %%% @author Jay Nelson <jay@duomark.com>
+%%% @reference The license is based on the template for Modified BSD from
+%%%   <a href="http://opensource.org/licenses/BSD-3-Clause">OSI</a>
 %%% @doc
 %%%   Test the speed of function calls and data accesses.
 %%% @since v0.0.1
@@ -8,9 +10,9 @@
 %%%------------------------------------------------------------------------------
 -module(bubba_fun_calls).
 
--license("New BSD").
--copyright("(c) 2011, DuoMark International, Inc.  All rights reserved").
--author(jayn).
+-copyright("(c) 2012, 2017, DuoMark International, Inc.  All rights reserved").
+-author('Jay Nelson <jay@duomark.com>').
+-license('New BSD').
 
 %% External API
 -export([run_exec_test/3, run_access_test/4]).
@@ -161,13 +163,11 @@ return_pairs([A,B | Rest], Pairs) ->
 
 %% Random indexes are in the range 1 - N-1 so that bin and tuple work.
 make_random_inxs(Num, MaxInx) ->
-    {A1, A2, A3} = now(),
-    random:seed(A1, A2, A3),
     make_random_inxs(Num, MaxInx-1, []).
 
 make_random_inxs(0, _MaxInx, Inxs) -> Inxs;
 make_random_inxs(N, MaxInx, Inxs) when N > 0 -> 
-    make_random_inxs(N-1, MaxInx, [random:uniform(MaxInx) | Inxs]).
+    make_random_inxs(N-1, MaxInx, [rand:uniform(MaxInx) | Inxs]).
 
 
 %% ==== Utilities for data access tests ==========================
@@ -269,11 +269,11 @@ auto_expire_proc() -> receive after 5000 -> expired end.
      
 
 %% ============= access funs =====================================================
--spec list_nth(non_neg_integer(), list(pos_integer())) -> ok.
--spec list_head(non_neg_integer(), list(pos_integer())) -> ok.
--spec binary_at([non_neg_integer(),...],  binary()) -> [byte()].
--spec binary_raw([non_neg_integer(),...], binary()) -> [byte()].
--spec tuple_inx([pos_integer(),...],      tuple(integer())) -> [pos_integer()].
+-spec list_nth   ( non_neg_integer(),       [pos_integer()]) ->  ok.
+-spec list_head  ( non_neg_integer(),       [pos_integer()]) ->  ok.
+-spec binary_at  ([non_neg_integer(), ...],  binary())       -> [byte()].
+-spec binary_raw ([non_neg_integer(), ...],  binary())       -> [byte()].
+-spec tuple_inx  ([pos_integer(),     ...], {integer()})     -> [pos_integer()].
 
 list_nth(N, L) -> lists:nth(N,L).
     
