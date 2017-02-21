@@ -42,9 +42,13 @@ start_link() ->
 -spec init({}) -> {ok, {supervisor:sup_flags(), [supervisor:child_spec()]}}.
 
 init({}) ->
-    Elli_Opts = [{callback, bubba_view},  {port, bubba_env:get_port()}],
+    Elli_Opts = [{callback, bubba_view},
+                 {ip,       bubba_env:get_ip()},
+                 {port,     bubba_env:get_port()}],
+
     Elli      = worker_child(elli,         start_link, [Elli_Opts]),
     Bubba     = worker_child(bubba_server, start_link, []),
+
     {ok, {one_for_one_sup_options(5,10), [Elli, Bubba]} }.
 
 one_for_one_sup_options(Intensity, Period) ->

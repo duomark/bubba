@@ -24,7 +24,7 @@ DEPS = asciideck eper esse elli
 dep_elli = hex 2.0.1
 dep_esse = git https://github.com/duomark/esse 0.2.0
 
-PLT_APPS = crypto
+PLT_APPS = crypto ssl public_key
 
 ERLC_OPTS := +debug_info +"{cover_enabled, true}"
 

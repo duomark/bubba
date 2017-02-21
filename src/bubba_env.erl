@@ -18,15 +18,19 @@
 -license('New BSD').
 
 %% External API
--export([get_port/0]).
+-export([get_ip/0, get_port/0]).
 
 
 %%%===================================================================
 %%% API functions
 %%%===================================================================
--spec get_port() -> pos_integer().
+-type ip_elem() :: non_neg_integer().
 
-get_port() -> get_app_env(sse_port, 9998).
+-spec get_ip   () -> {ip_elem(), ip_elem(), ip_elem(), ip_elem()}.
+-spec get_port () -> pos_integer().
+
+get_ip   () -> get_app_env(ip,  {127,0,0,1}).
+get_port () -> get_app_env(port, 9998).
 
 
 %%%===================================================================

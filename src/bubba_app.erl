@@ -25,14 +25,12 @@
 %% Application callbacks
 %% ===================================================================
 
--spec start() -> {ok, pid()}.
--spec start(any(), any()) -> {ok, pid()}.
--spec stop([]) -> ok.
+-type restart_type() :: 'permanent' | 'transient' | 'temporary'.
 
-start() ->
-    bubba_sup:start_link().
+-spec start()                                         ->  ok | {error, any()}.
+-spec start(application:start_type(), restart_type()) -> {ok, pid()}.
+-spec stop([])                                        ->  ok.
 
-start(_StartType, _StartArgs) ->
-    bubba_sup:start_link().
-
-stop(_State) -> ok.
+start ()                       -> application:start(bubba).
+start (_StartType, _StartArgs) -> bubba_sup:start_link().
+stop  (_State)                 -> ok.
