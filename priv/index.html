@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <!-- script src="js/bubba_chart.js"></script -->
+  <script>
+    var session_id = null;
+    var connectionOpen = null;
+
+    function open_sse(url) {
+      var sse =
+        d3.request(url)
+            .header("X-Requested-With", "XMLHttpRequest")
+            .mimeType("text/event-stream");
+
+      return sse.get(callback);
+    }
+
+    function test_esse() {
+       var source = new EventSource('http://127.0.0.1:9997/test_esse');
+
+       source.onopen  = function() {connectionOpen = true;};
+       source.onerror = function() {connectionOpen = false; session_id = null;};
+       source.session_id = function() {return session_id;}
+
+       source.addEventListener('new_session_id', set_session_id, false);
+       source.onmessage = function(event) {console.log('Msg: ' + event.data);};
+       return source;
+    }
+
+    function set_session_id(event) {session_id = event.data;};
+
+  </script>
+</head>
+
+<body>
+  <svg id="results"></svg>
+
+  <script>
+    if (typeof(EventSource) !== "undefined") {
+      var ES = test_esse();
+    } else {
+      alert("SSE not supported")
+    }
+  </script>
+
+</body>
+
+</html>

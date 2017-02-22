@@ -1,4 +1,4 @@
-The following people have contributed code to the bubba project:
+The following people have contributed code to the Bubba project:
 
-  * Jay Nelson (http://about.me/duomark)
+  * Jay Nelson (https://github.com/jaynel)
 
